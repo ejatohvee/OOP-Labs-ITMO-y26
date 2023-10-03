@@ -2,18 +2,11 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Engines;
 
 public class ImpulseETypeEngine : ImpulseEngine
 {
-    private int _speed;
-    private int _fuelconsumption;
+    private const double SpeedInLightYearsPerHour = 200;
+    private const double FuelConsumptionCoefficient = 10;
 
-    public override int CountSpeed()
+    public ImpulseETypeEngine()
+        : base(SpeedInLightYearsPerHour, FuelConsumptionCoefficient)
     {
-        _speed = 2 * 10;
-        return _speed;
-    }
-
-    public override int FuelConsumption(int distance)
-    {
-        _fuelconsumption = 2 * distance;
-        return _fuelconsumption;
     }
 }

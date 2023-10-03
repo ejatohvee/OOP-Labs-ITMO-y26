@@ -7,11 +7,8 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Spaceship;
 
 public class Meredian : Spaceship
 {
-    private ShipWeightOverallCharacteristics MediumWeight;
-    private bool _antiNeutrinoEmitter = true;
-
     public Meredian()
-        : base(new ImpulseETypeEngine(), new SecondClassDeflector(false), new SecondStrenghtClass(), null)
+        : base(new ImpulseETypeEngine(), new SecondClassDeflector(false), new SecondStrenghtClass(), null, ShipWeightOverallCharacteristics.MediumWeight, true)
     {
     }
 }

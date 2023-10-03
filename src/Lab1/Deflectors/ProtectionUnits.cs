@@ -2,9 +2,9 @@ using System;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Deflectors;
 
-public record struct ProtectionUnits // обьект значения
+public record struct ProtectionUnits
 {
-    public ProtectionUnits(int value)
+    public ProtectionUnits(double value)
     {
         if (value < 0)
         {
@@ -14,32 +14,32 @@ public record struct ProtectionUnits // обьект значения
         Value = value;
     }
 
-    public int Value { get; }
+    public double Value { get; }
 
-    public static ProtectionUnits operator -(ProtectionUnits units, int value)
+    public static ProtectionUnits operator -(ProtectionUnits units, double value)
     {
-        int resultValue = units.Value - value;
+        double resultValue = units.Value - value;
 
         return new ProtectionUnits(resultValue);
     }
 
     public static ProtectionUnits operator +(ProtectionUnits unitOne, ProtectionUnits unitTwo)
     {
-        int resultValue = unitOne.Value + unitTwo.Value;
+        double resultValue = unitOne.Value + unitTwo.Value;
 
         return new ProtectionUnits(resultValue);
     }
 
-    public static ProtectionUnits Subtract(ProtectionUnits units, int value)
+    public static ProtectionUnits Subtract(ProtectionUnits units, double value)
     {
-        int resultValue = units.Value - value;
+        double resultValue = units.Value - value;
 
         return new ProtectionUnits(resultValue);
     }
 
     public static ProtectionUnits Add(ProtectionUnits unitOne, ProtectionUnits unitTwo)
     {
-        int resultValue = unitOne.Value + unitTwo.Value;
+        double resultValue = unitOne.Value + unitTwo.Value;
 
         return new ProtectionUnits(resultValue);
     }

@@ -3,8 +3,9 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 public enum ShipState
 {
     Normal,
-    Destroyed,
+    ShipDestroyed,
     DeflectorDestroyed,
     DamageIsNotCritical,
     CrewWasKilled,
+    ShipLost,
 }

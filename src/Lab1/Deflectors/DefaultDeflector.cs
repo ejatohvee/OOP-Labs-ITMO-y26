@@ -7,7 +7,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Deflectors;
 
 public abstract class DefaultDeflector : IDeflector
 {
-    protected DefaultDeflector(int asteroidsAmount, int meteoritesAmount, bool photonicDeflectorActivated)
+    protected DefaultDeflector(double asteroidsAmount, double meteoritesAmount, bool photonicDeflectorActivated)
     {
         if (asteroidsAmount < 0 || meteoritesAmount < 0)
         {
@@ -23,7 +23,7 @@ public abstract class DefaultDeflector : IDeflector
         }
     }
 
-    public int PhotonicShield { get; set; }
+    public double PhotonicShield { get; set; }
     public ProtectionUnits ProtectionUnits { get; set; }
     public ShipState TakeDamage(IEnumerable<Obstacles.Obstacle> damageSources)
     {

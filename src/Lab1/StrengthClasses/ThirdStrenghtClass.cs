@@ -6,7 +6,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.StrengthClasses;
 
 public class ThirdStrenghtClass : DefaultStrengthClass
 {
-    private int _protectionUnits;
+    private double _protectionUnits;
 
     public ThirdStrenghtClass()
         : base(20, 5)

@@ -2,18 +2,10 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Engines;
 
 public class GammaJumpEngine : JumpEngine
 {
-    private int _speed;
-    private int _fuelconsumption;
-
-    public override int CountSpeed()
+    private const double JumpDistanceInLightYears = 35;
+    private const double FuelConsumptionCoefficient = 10;
+    public GammaJumpEngine()
+        : base(JumpDistanceInLightYears, FuelConsumptionCoefficient)
     {
-        _speed = 2 * 100;
-        return _speed;
-    }
-
-    public override int FuelConsumption(int distance)
-    {
-        _fuelconsumption = distance * distance;
-        return _fuelconsumption;
     }
 }

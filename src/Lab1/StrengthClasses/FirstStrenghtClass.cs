@@ -6,7 +6,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.StrengthClasses;
 
 public class FirstStrenghtClass : DefaultStrengthClass
 {
-    private int _protectionUnits;
+    private double _protectionUnits;
 
     public FirstStrenghtClass()
         : base(1, 0)

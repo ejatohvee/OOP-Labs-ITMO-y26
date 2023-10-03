@@ -6,7 +6,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.StrengthClasses;
 
 public abstract class DefaultStrengthClass
 {
-    protected DefaultStrengthClass(int asteroidsAmount, int meteoritesAmount)
+    protected DefaultStrengthClass(double asteroidsAmount, double meteoritesAmount)
     {
         if (asteroidsAmount < 0 || meteoritesAmount < 0)
         {

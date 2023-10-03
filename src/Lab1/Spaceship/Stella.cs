@@ -7,11 +7,8 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Spaceship;
 
 public class Stella : Spaceship
 {
-    private ShipWeightOverallCharacteristics SmallWeight;
-    private bool _antiNeutrinoEmitter;
-
     public Stella()
-        : base(new ImpulseCTypeEngine(), new FirstClassDeflector(false), new FirstStrenghtClass(), new OmegaJumpEngine())
+        : base(new ImpulseCTypeEngine(), new FirstClassDeflector(false), new FirstStrenghtClass(), new OmegaJumpEngine(), ShipWeightOverallCharacteristics.SmallWeight, false)
     {
     }
 }

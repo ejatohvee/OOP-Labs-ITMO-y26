@@ -7,10 +7,8 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Spaceship;
 
 public class Vaclas : Spaceship
 {
-    private ShipWeightOverallCharacteristics MediumWeight;
-    private bool _antiNeutrinoEmitter;
     public Vaclas()
-        : base(new ImpulseETypeEngine(), new FirstClassDeflector(false), new FirstStrenghtClass(), new GammaJumpEngine())
+        : base(new ImpulseETypeEngine(), new FirstClassDeflector(false), new FirstStrenghtClass(), new GammaJumpEngine(), ShipWeightOverallCharacteristics.MediumWeight, false)
     {
     }
 }
