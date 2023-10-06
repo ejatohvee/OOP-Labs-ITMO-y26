@@ -7,8 +7,8 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Spaceship;
 
 public class Vaclas : Spaceship
 {
-    public Vaclas()
-        : base(new ImpulseETypeEngine(), new FirstClassDeflector(false), new FirstStrenghtClass(), new GammaJumpEngine(), ShipWeightOverallCharacteristics.MediumWeight, false)
+    public Vaclas(bool isPhotonDeflectorActivated)
+        : base(new ImpulseETypeEngine(), new FirstClassDeflector(isPhotonDeflectorActivated), new FirstStrenghtClass(), new GammaJumpEngine(), ShipWeightOverallCharacteristics.MediumWeight, false)
     {
     }
 }

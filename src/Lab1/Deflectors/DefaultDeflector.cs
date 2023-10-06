@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Itmo.ObjectOrientedProgramming.Lab1.Models;
 using Itmo.ObjectOrientedProgramming.Lab1.Obstacles;
 
@@ -15,7 +14,7 @@ public abstract class DefaultDeflector : IDeflector
         }
 
         PhotonicShield = 0;
-        ProtectionUnits = new ProtectionUnits(asteroidsAmount * meteoritesAmount);
+        ProtectionUnits = new ProtectionUnits(asteroidsAmount * meteoritesAmount * 10);
 
         if (photonicDeflectorActivated)
         {
@@ -23,26 +22,41 @@ public abstract class DefaultDeflector : IDeflector
         }
     }
 
-    public double PhotonicShield { get; set; }
-    public ProtectionUnits ProtectionUnits { get; set; }
-    public ShipState TakeDamage(IEnumerable<Obstacles.Obstacle> damageSources)
-    {
-        ArgumentNullException.ThrowIfNull(damageSources);
+    public bool IsDeflectorDestroyed { get; set; }
 
-        foreach (Obstacles.Obstacle obstacle in damageSources)
+    private double PhotonicShield { get; set; }
+    private ProtectionUnits ProtectionUnits { get; set; }
+    public virtual ShipState TakeDamage(Obstacle obstacle)
+    {
+        ArgumentNullException.ThrowIfNull(obstacle);
+
+        switch (obstacle)
         {
-            ProtectionUnits -= obstacle.Damage;
-            if (obstacle is not AntimatterOutbreak) continue;
-            if (PhotonicShield is not 0)
+            case AntimatterOutbreak:
             {
-                PhotonicShield -= 1;
-            }
-            else
-            {
+                if (PhotonicShield > 0)
+                {
+                    PhotonicShield -= 1;
+                    return ShipState.DamageIsNotCritical;
+                }
+
                 return ShipState.CrewWasKilled;
             }
-        }
 
-        return ShipState.Normal;
+            case CosmicWhales:
+            {
+                return ShipState.ShipDestroyed;
+            }
+
+            default:
+                ProtectionUnits -= obstacle.Damage;
+                if (ProtectionUnits.Value <= 0)
+                {
+                    IsDeflectorDestroyed = true;
+                    return ShipState.DeflectorDestroyed;
+                }
+
+                return ShipState.DamageIsNotCritical;
+        }
     }
 }

@@ -7,8 +7,8 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Spaceship;
 
 public class Meredian : Spaceship
 {
-    public Meredian()
-        : base(new ImpulseETypeEngine(), new SecondClassDeflector(false), new SecondStrenghtClass(), null, ShipWeightOverallCharacteristics.MediumWeight, true)
+    public Meredian(bool isPhotonDeflectorActivated)
+        : base(new ImpulseETypeEngine(), new SecondClassDeflector(isPhotonDeflectorActivated), new SecondStrenghtClass(), null, ShipWeightOverallCharacteristics.MediumWeight, true)
     {
     }
 }

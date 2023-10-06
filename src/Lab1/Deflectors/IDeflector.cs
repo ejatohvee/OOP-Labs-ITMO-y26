@@ -1,9 +1,9 @@
-using System.Collections.Generic;
 using Itmo.ObjectOrientedProgramming.Lab1.Models;
+using Itmo.ObjectOrientedProgramming.Lab1.Obstacles;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Deflectors;
 
  public interface IDeflector
  {
-     ShipState TakeDamage(IEnumerable<Obstacles.Obstacle> damageSources);
+     ShipState TakeDamage(Obstacle obstacle);
  }

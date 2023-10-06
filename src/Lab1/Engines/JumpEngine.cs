@@ -12,11 +12,11 @@ public abstract class JumpEngine : IEngine
 
     private double FuelConsumptionCoefficient { get; }
 
-    private double PriceOfFlight { get; set; }
+    private double FuelConsumed { get; set; }
 
-    public double MoneyConsumption(double distance)
+    public double FuelConsumption(double distance)
     {
-        PriceOfFlight = distance * FuelConsumptionCoefficient;
-        return PriceOfFlight;
+        FuelConsumed = distance * FuelConsumptionCoefficient;
+        return FuelConsumed;
     }
 }

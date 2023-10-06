@@ -5,5 +5,6 @@ public enum TrailState
     Success,
     ShipLost,
     ShipDestroyed,
+    ShieldLost,
     CrewWasKilled,
 }

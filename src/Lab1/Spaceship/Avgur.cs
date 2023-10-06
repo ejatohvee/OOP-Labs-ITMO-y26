@@ -7,8 +7,8 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Spaceship;
 
 public class Avgur : Spaceship
 {
-    public Avgur()
-        : base(new ImpulseETypeEngine(), new ThirdClassDeflector(false), new ThirdStrenghtClass(), new AlphaJumpEngine(), ShipWeightOverallCharacteristics.SmallWeight, false)
+    public Avgur(bool isPhotonDeflectorActivated)
+        : base(new ImpulseETypeEngine(), new ThirdClassDeflector(isPhotonDeflectorActivated), new ThirdStrenghtClass(), new AlphaJumpEngine(), ShipWeightOverallCharacteristics.SmallWeight, false)
     {
     }
 }

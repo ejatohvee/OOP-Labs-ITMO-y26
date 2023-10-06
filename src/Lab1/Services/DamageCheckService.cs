@@ -1,50 +1,51 @@
 using System;
-using Itmo.ObjectOrientedProgramming.Lab1.Deflectors;
+using System.Collections.Generic;
 using Itmo.ObjectOrientedProgramming.Lab1.Models;
 using Itmo.ObjectOrientedProgramming.Lab1.Obstacles;
-using Itmo.ObjectOrientedProgramming.Lab1.StrengthClasses;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Services;
 
-public class DamageCheckService
+public static class DamageCheckService
 {
-    private ProtectionUnits _totalProtectionUnitsAmount;
-    private ProtectionUnits _deflectorProtectionUnits;
-    private ProtectionUnits _protectionProtectionUnits;
-
-    public ProtectionUnits TotalProtectionAmount(DefaultDeflector? deflector, DefaultStrengthClass protection)
+    public static ShipState DamageCheck(IReadOnlyCollection<Obstacle> obstacles, Spaceship.Spaceship spaceship)
     {
-        ArgumentNullException.ThrowIfNull(deflector);
-        ArgumentNullException.ThrowIfNull(protection);
-        _deflectorProtectionUnits = deflector.ProtectionUnits;
-        _protectionProtectionUnits = protection.ProtectionUnits;
-        _totalProtectionUnitsAmount = deflector.ProtectionUnits + protection.ProtectionUnits;
-        return _totalProtectionUnitsAmount;
-    }
+        ArgumentNullException.ThrowIfNull(obstacles);
+        ArgumentNullException.ThrowIfNull(spaceship);
 
-    public ShipState DamageCheck(Obstacle obstacle, DefaultDeflector? deflector, DefaultStrengthClass protection)
-    {
-        ArgumentNullException.ThrowIfNull(obstacle);
+        foreach (Obstacle obstacle in obstacles)
+        {
+            if (obstacle is CosmicWhales && spaceship.AntiNeutrinoEmitter) continue;
+            if (spaceship.DefaultDeflector != null && !spaceship.DefaultDeflector.IsDeflectorDestroyed)
+            {
+                switch (spaceship.DefaultDeflector.TakeDamage(obstacle))
+                {
+                    case ShipState.DeflectorDestroyed:
+                    {
+                        spaceship.DefaultDeflector.IsDeflectorDestroyed = true;
+                        return ShipState.DeflectorDestroyed;
+                    }
 
-        TotalProtectionAmount(deflector, protection);
-        _totalProtectionUnitsAmount -= obstacle.Damage;
-        if (obstacle.KillCrew)
-        {
-            return ShipState.CrewWasKilled;
-        }
-        else if (_totalProtectionUnitsAmount.Value <= 0)
-        {
-            return ShipState.ShipDestroyed;
-        }
-        else if (deflector is not null && obstacle.Damage >= _deflectorProtectionUnits.Value)
-        {
-            return ShipState.DeflectorDestroyed;
-        }
-        else if (obstacle is CosmicWhales)
-        {
-            return deflector is not null ? ShipState.DeflectorDestroyed : ShipState.ShipDestroyed;
+                    case ShipState.CrewWasKilled:
+                        return ShipState.CrewWasKilled;
+
+                    case ShipState.ShipDestroyed:
+                        return ShipState.ShipDestroyed;
+                }
+            }
+            else
+            {
+                if (spaceship.DefaultStrengthClass.TakeDamage(obstacle) == ShipState.ShipDestroyed)
+                {
+                    return ShipState.ShipDestroyed;
+                }
+
+                if (obstacle.KillCrew)
+                {
+                    return ShipState.CrewWasKilled;
+                }
+            }
         }
 
-        return ShipState.DamageIsNotCritical;
+        return ShipState.Normal;
     }
 }

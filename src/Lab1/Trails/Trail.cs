@@ -1,33 +1,51 @@
+using System;
 using System.Collections.Generic;
-using Itmo.ObjectOrientedProgramming.Lab1.Environments;
 using Itmo.ObjectOrientedProgramming.Lab1.Models;
+using Itmo.ObjectOrientedProgramming.Lab1.Services;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Trails;
 
 public class Trail
 {
-    public Trail(IReadOnlyCollection<Environment> pathSegment)
+    public Trail(IReadOnlyCollection<Environments.Environments> pathSegments)
     {
-        PathSegment = pathSegment;
+        PathSegments = pathSegments;
     }
 
-    private IReadOnlyCollection<Environment> PathSegment { get; }
+    public IReadOnlyCollection<Environments.Environments> PathSegments { get; }
+
+    public TrailData TrailStatistic(Spaceship.Spaceship spaceship, double fuelCost)
+    {
+        ArgumentNullException.ThrowIfNull(spaceship);
+        double totalTimeAmount = 0;
+        double totalMoneySpend = 0;
+
+        foreach (Environments.Environments environment in PathSegments)
+        {
+            totalTimeAmount += TrailDataCalculationService.TimeSpend(environment.Distance, spaceship);
+            totalMoneySpend += totalTimeAmount * TrailDataCalculationService.MoneySpend(environment, environment.Distance, spaceship, fuelCost);
+        }
+
+        return new TrailData(totalTimeAmount, totalMoneySpend);
+    }
 
     public TrailState TrailResult(Spaceship.Spaceship spaceship)
     {
-        foreach (Environment environment in PathSegment)
+        foreach (Environments.Environments environment in PathSegments)
         {
-            if (environment.CanMoveThrough(spaceship) is ShipState.ShipDestroyed)
+            ShipState result = environment.CanMoveThrough(spaceship);
+            switch (result)
             {
-                return TrailState.ShipDestroyed;
-            }
-            else if (environment.CanMoveThrough(spaceship) is ShipState.CrewWasKilled)
-            {
-                return TrailState.CrewWasKilled;
-            }
-            else if (environment.CanMoveThrough(spaceship) is ShipState.ShipLost)
-            {
-                return TrailState.ShipLost;
+                case ShipState.ShipDestroyed:
+                    return TrailState.ShipDestroyed;
+                case ShipState.CrewWasKilled:
+                    return TrailState.CrewWasKilled;
+                case ShipState.ShipLost:
+                    return TrailState.ShipLost;
+                case ShipState.DeflectorDestroyed:
+                    return TrailState.ShieldLost;
+                default:
+                    return TrailState.Success;
             }
         }
 
