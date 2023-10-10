@@ -19,6 +19,7 @@ public static class TrailDataCalculationService
 
     public static double MoneySpend(Environments.Environments environment, double distance, Spaceship.Spaceship spaceship, double fuelCost)
     {
+        const double coefficientIfImpulseEngineSpeedIsExp = 1.5;
         ArgumentNullException.ThrowIfNull(spaceship);
         ArgumentNullException.ThrowIfNull(spaceship.ImpulseEngine);
 
@@ -29,7 +30,7 @@ public static class TrailDataCalculationService
 
         if (environment is NitrideParticlesNebula && spaceship.ImpulseEngine is ImpulseETypeEngine)
         {
-            return ((spaceship.ImpulseEngine.FuelConsumption(distance) * fuelCost) / 1.5) + spaceship.ImpulseEngine.FuelConsumptionPerStart;
+            return ((spaceship.ImpulseEngine.FuelConsumption(distance) * fuelCost) / coefficientIfImpulseEngineSpeedIsExp) + spaceship.ImpulseEngine.FuelConsumptionPerStart;
         }
 
         return (spaceship.ImpulseEngine.FuelConsumption(distance) * fuelCost) + spaceship.ImpulseEngine.FuelConsumptionPerStart;

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Itmo.ObjectOrientedProgramming.Lab1.Environments;
 using Itmo.ObjectOrientedProgramming.Lab1.Models;
 using Itmo.ObjectOrientedProgramming.Lab1.Obstacles;
-using Itmo.ObjectOrientedProgramming.Lab1.Services;
 using Itmo.ObjectOrientedProgramming.Lab1.Spaceship;
 using Itmo.ObjectOrientedProgramming.Lab1.Trails;
 using Xunit;

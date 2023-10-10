@@ -5,8 +5,11 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Deflectors;
 
 public class ThirdClassDeflector : DefaultDeflector
 {
+    private const double AsteroidsAmountDeflectorCanWithstand = 40;
+    private const double MeteoritesAmountDeflectorCanWithstand = 10;
+
     public ThirdClassDeflector(bool photonicDeflectorActivated)
-        : base(40, 10, photonicDeflectorActivated)
+        : base(AsteroidsAmountDeflectorCanWithstand, MeteoritesAmountDeflectorCanWithstand, photonicDeflectorActivated)
     {
     }
 

@@ -8,9 +8,9 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Environments;
 
 public abstract class Environments
 {
-    protected Environments(IReadOnlyCollection<Obstacle>? obstacles, DistanceOfPathSegment distance)
+    protected Environments(IReadOnlyCollection<Obstacle> obstacles, DistanceOfPathSegment distance)
     {
-        Obstacles = obstacles ?? new List<Obstacle>();
+        Obstacles = obstacles;
         Distance = distance.GetDistance();
     }
 
@@ -21,16 +21,6 @@ public abstract class Environments
     {
         ArgumentNullException.ThrowIfNull(spaceship);
 
-        switch (DamageCheckService.DamageCheck(Obstacles, spaceship))
-        {
-            case ShipState.ShipDestroyed:
-                return ShipState.ShipDestroyed;
-            case ShipState.CrewWasKilled:
-                return ShipState.CrewWasKilled;
-            case ShipState.DeflectorDestroyed:
-                return ShipState.DeflectorDestroyed;
-            default:
-                return ShipState.Normal;
-        }
+        return DamageCheckService.DamageCheck(Obstacles, spaceship);
     }
 }

@@ -7,7 +7,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Environments;
 
 public class NitrideParticlesNebula : Environments
 {
-    public NitrideParticlesNebula(IReadOnlyCollection<Obstacle>? obstacles, DistanceOfPathSegment distance)
+    public NitrideParticlesNebula(IReadOnlyCollection<Obstacle> obstacles, DistanceOfPathSegment distance)
         : base(obstacles, distance)
     {
     }

@@ -49,7 +49,7 @@ public abstract class DefaultDeflector : IDeflector
             }
 
             default:
-                ProtectionUnits -= obstacle.Damage;
+                ProtectionUnits = ProtectionUnits.SubtractValue(ProtectionUnits, obstacle.Damage);
                 if (ProtectionUnits.Value <= 0)
                 {
                     IsDeflectorDestroyed = true;

@@ -14,7 +14,8 @@ public class PassageShipTests
     public void CheckTrailPleasureShuttleMoveThroughHighDensityNebulaFailed()
     {
         var pleasureShuttle = new PleasureShuttle();
-        var environment = new HighDensityNebula(null, DistanceOfPathSegment.Huge);
+        IReadOnlyCollection<Obstacle> obstacles = new List<Obstacle>();
+        var environment = new HighDensityNebula(obstacles, DistanceOfPathSegment.Huge);
         IReadOnlyCollection<Environments.Environments> pathSegment = new List<Environments.Environments> { environment };
         var trail = new Trail(pathSegment);
 
@@ -29,7 +30,8 @@ public class PassageShipTests
     {
         const bool isPhotonDeflectorActivated = false;
         var avgur = new Avgur(isPhotonDeflectorActivated);
-        var environment = new HighDensityNebula(null, DistanceOfPathSegment.Huge);
+        IReadOnlyCollection<Obstacle> obstacles = new List<Obstacle>();
+        var environment = new HighDensityNebula(obstacles, DistanceOfPathSegment.Huge);
         IReadOnlyCollection<Environments.Environments> pathSegment = new List<Environments.Environments> { environment };
         var trail = new Trail(pathSegment);
 

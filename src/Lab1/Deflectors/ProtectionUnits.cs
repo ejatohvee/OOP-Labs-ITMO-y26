@@ -16,28 +16,14 @@ public record struct ProtectionUnits
 
     public double Value { get; }
 
-    public static ProtectionUnits operator -(ProtectionUnits units, double value)
+    public static ProtectionUnits SubtractValue(ProtectionUnits units, double value)
     {
         double resultValue = units.Value - value;
 
         return new ProtectionUnits(resultValue);
     }
 
-    public static ProtectionUnits operator +(ProtectionUnits unitOne, ProtectionUnits unitTwo)
-    {
-        double resultValue = unitOne.Value + unitTwo.Value;
-
-        return new ProtectionUnits(resultValue);
-    }
-
-    public static ProtectionUnits Subtract(ProtectionUnits units, double value)
-    {
-        double resultValue = units.Value - value;
-
-        return new ProtectionUnits(resultValue);
-    }
-
-    public static ProtectionUnits Add(ProtectionUnits unitOne, ProtectionUnits unitTwo)
+    public static ProtectionUnits AddValue(ProtectionUnits unitOne, ProtectionUnits unitTwo)
     {
         double resultValue = unitOne.Value + unitTwo.Value;
 

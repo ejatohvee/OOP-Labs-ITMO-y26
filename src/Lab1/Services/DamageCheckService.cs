@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Itmo.ObjectOrientedProgramming.Lab1.Deflectors;
 using Itmo.ObjectOrientedProgramming.Lab1.Models;
 using Itmo.ObjectOrientedProgramming.Lab1.Obstacles;
 
@@ -12,40 +14,21 @@ public static class DamageCheckService
         ArgumentNullException.ThrowIfNull(obstacles);
         ArgumentNullException.ThrowIfNull(spaceship);
 
-        foreach (Obstacle obstacle in obstacles)
+        if (obstacles.Any(obstacle => spaceship.AntiNeutrinoEmitter is false && obstacle is CosmicWhales))
         {
-            if (obstacle is CosmicWhales && spaceship.AntiNeutrinoEmitter) continue;
-            if (spaceship.DefaultDeflector != null && !spaceship.DefaultDeflector.IsDeflectorDestroyed)
-            {
-                switch (spaceship.DefaultDeflector.TakeDamage(obstacle))
-                {
-                    case ShipState.DeflectorDestroyed:
-                    {
-                        spaceship.DefaultDeflector.IsDeflectorDestroyed = true;
-                        return ShipState.DeflectorDestroyed;
-                    }
-
-                    case ShipState.CrewWasKilled:
-                        return ShipState.CrewWasKilled;
-
-                    case ShipState.ShipDestroyed:
-                        return ShipState.ShipDestroyed;
-                }
-            }
-            else
-            {
-                if (spaceship.DefaultStrengthClass.TakeDamage(obstacle) == ShipState.ShipDestroyed)
-                {
-                    return ShipState.ShipDestroyed;
-                }
-
-                if (obstacle.KillCrew)
-                {
-                    return ShipState.CrewWasKilled;
-                }
-            }
+            return spaceship.DefaultDeflector is ThirdClassDeflector ? ShipState.DeflectorDestroyed : ShipState.ShipDestroyed;
         }
 
-        return ShipState.Normal;
+        if (obstacles.Any(obstacle => spaceship.DefaultDeflector is not null && spaceship.DefaultDeflector.TakeDamage(obstacle) == ShipState.DeflectorDestroyed))
+        {
+            return ShipState.DeflectorDestroyed;
+        }
+
+        if (obstacles.Any(obstacle => spaceship.DefaultDeflector is not null && obstacle.KillCrew && spaceship.DefaultDeflector.TakeDamage(obstacle) == ShipState.CrewWasKilled))
+        {
+                return ShipState.CrewWasKilled;
+        }
+
+        return obstacles.Any(obstacle => spaceship.DefaultDeflector is not null && spaceship.DefaultDeflector.TakeDamage(obstacle) == ShipState.DeflectorDestroyed && spaceship.DefaultStrengthClass.TakeDamage(obstacle) == ShipState.ShipDestroyed) ? ShipState.ShipDestroyed : ShipState.Normal;
     }
 }

@@ -7,7 +7,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Environments;
 
 public class HighDensityNebula : Environments
 {
-    public HighDensityNebula(IReadOnlyCollection<Obstacle>? obstacles, DistanceOfPathSegment distance)
+    public HighDensityNebula(IReadOnlyCollection<Obstacle> obstacles, DistanceOfPathSegment distance)
         : base(obstacles, distance)
     {
     }

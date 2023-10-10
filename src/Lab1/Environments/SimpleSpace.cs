@@ -7,7 +7,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Environments;
 
 public class SimpleSpace : Environments
 {
-    public SimpleSpace(IReadOnlyCollection<Obstacle>? obstacles, DistanceOfPathSegment distance)
+    public SimpleSpace(IReadOnlyCollection<Obstacle> obstacles, DistanceOfPathSegment distance)
         : base(obstacles, distance)
     {
     }

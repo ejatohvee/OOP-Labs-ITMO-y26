@@ -22,7 +22,7 @@ public abstract class DefaultStrengthClass
     {
         ArgumentNullException.ThrowIfNull(obstacle);
 
-        ProtectionUnits -= obstacle.Damage;
+        ProtectionUnits = ProtectionUnits.SubtractValue(ProtectionUnits, obstacle.Damage);
         return ProtectionUnits.Value <= 0 ? ShipState.ShipDestroyed : ShipState.DamageIsNotCritical;
     }
 }
