@@ -1,0 +1,85 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Itmo.ObjectOrientedProgramming.Lab2.Components;
+using Itmo.ObjectOrientedProgramming.Lab2.Components.Corpus;
+using Itmo.ObjectOrientedProgramming.Lab2.Components.Ssd;
+using Itmo.ObjectOrientedProgramming.Lab2.Components.VideoCart;
+using Itmo.ObjectOrientedProgramming.Lab2.Components.WiFiAdapter;
+
+namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
+
+public class Repository
+{
+    public ICollection<Motherboard> Motherboards { get; } = new Collection<Motherboard>();
+    public ICollection<Cpu> Cpus { get; } = new Collection<Cpu>();
+    public ICollection<Bios> Bioses { get; } = new Collection<Bios>();
+    public ICollection<CpuCoolingSystem> CpuCoolingSystems { get; } = new Collection<CpuCoolingSystem>();
+    public ICollection<RandomAccessMemory> RandomAccessMemories { get; } = new Collection<RandomAccessMemory>();
+    public ICollection<XmpProfile> XmpProfiles { get; } = new Collection<XmpProfile>();
+    public ICollection<VideoCart> VideoCarts { get; } = new Collection<VideoCart>();
+    public ICollection<Ssd> Ssds { get; } = new Collection<Ssd>();
+    public ICollection<Hdd> Hdds { get; } = new Collection<Hdd>();
+    public ICollection<Corpus> Corpuses { get; } = new Collection<Corpus>();
+    public ICollection<PowerUnit> PowerUnits { get; } = new Collection<PowerUnit>();
+    public ICollection<WiFiAdapter> WiFiAdapters { get; } = new Collection<WiFiAdapter>();
+
+    public void AddMotherboard(Motherboard motherboard)
+    {
+        Motherboards.Add(motherboard);
+    }
+
+    public void AddCpu(Cpu cpu)
+    {
+        Cpus.Add(cpu);
+    }
+
+    public void AddBios(Bios bios)
+    {
+        Bioses.Add(bios);
+    }
+
+    public void AddCpuCoolingSystem(CpuCoolingSystem cpuCoolingSystem)
+    {
+        CpuCoolingSystems.Add(cpuCoolingSystem);
+    }
+
+    public void AddRandomAccessMemory(RandomAccessMemory randomAccessMemory)
+    {
+        RandomAccessMemories.Add(randomAccessMemory);
+    }
+
+    public void AddXmpProfile(XmpProfile xmpProfile)
+    {
+        XmpProfiles.Add(xmpProfile);
+    }
+
+    public void AddVideoCart(VideoCart videoCart)
+    {
+        VideoCarts.Add(videoCart);
+    }
+
+    public void AddSsd(Ssd ssd)
+    {
+        Ssds.Add(ssd);
+    }
+
+    public void AddHdd(Hdd hdd)
+    {
+        Hdds.Add(hdd);
+    }
+
+    public void AddCorpus(Corpus corpus)
+    {
+        Corpuses.Add(corpus);
+    }
+
+    public void AddPowerUnit(PowerUnit powerUnit)
+    {
+        PowerUnits.Add(powerUnit);
+    }
+
+    public void AddWiFiAdapter(WiFiAdapter wiFiAdapter)
+    {
+        WiFiAdapters.Add(wiFiAdapter);
+    }
+}
