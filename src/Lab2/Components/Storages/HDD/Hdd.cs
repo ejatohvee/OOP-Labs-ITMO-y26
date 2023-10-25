@@ -1,19 +1,17 @@
 using System;
+using Itmo.ObjectOrientedProgramming.Lab2.Components.Storages;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Components;
 
-public class Hdd
+public class Hdd : Storage
 {
     public Hdd(double capacity, double spindleRotationSpeed, double powerConsumption)
+    : base(capacity, powerConsumption)
     {
-        Capacity = capacity;
         SpindleRotationSpeed = spindleRotationSpeed;
-        PowerConsumption = powerConsumption;
     }
 
-    public double Capacity { get; set; }
     public double SpindleRotationSpeed { get; set; }
-    public double PowerConsumption { get; set; }
 
     public IHddBuilder Direct(IHddBuilder hddBuilder)
     {

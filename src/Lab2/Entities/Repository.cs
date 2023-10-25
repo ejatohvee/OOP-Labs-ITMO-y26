@@ -10,6 +10,22 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
 public class Repository
 {
+    private static readonly object _lock = new();
+    private static Repository? _instance;
+    private Repository() { }
+    public static Repository Instance
+    {
+        get
+        {
+            if (_instance is not null)
+                return _instance;
+            lock (_lock)
+            {
+             return _instance = new Repository();
+            }
+        }
+    }
+
     public ICollection<Motherboard> Motherboards { get; } = new Collection<Motherboard>();
     public ICollection<Cpu> Cpus { get; } = new Collection<Cpu>();
     public ICollection<Bios> Bioses { get; } = new Collection<Bios>();
@@ -22,6 +38,22 @@ public class Repository
     public ICollection<Corpus> Corpuses { get; } = new Collection<Corpus>();
     public ICollection<PowerUnit> PowerUnits { get; } = new Collection<PowerUnit>();
     public ICollection<WiFiAdapter> WiFiAdapters { get; } = new Collection<WiFiAdapter>();
+
+    public void ClearRepository()
+    {
+        Motherboards.Clear();
+        Cpus.Clear();
+        Bioses.Clear();
+        CpuCoolingSystems.Clear();
+        RandomAccessMemories.Clear();
+        XmpProfiles.Clear();
+        VideoCarts.Clear();
+        Ssds.Clear();
+        Hdds.Clear();
+        Corpuses.Clear();
+        PowerUnits.Clear();
+        WiFiAdapters.Clear();
+    }
 
     public void AddMotherboard(Motherboard motherboard)
     {

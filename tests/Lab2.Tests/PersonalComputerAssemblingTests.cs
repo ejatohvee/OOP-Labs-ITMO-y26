@@ -44,7 +44,7 @@ public class PersonalComputerAssemblingTests
         var corsairRM850x850 = new PowerUnit(850);
         var cpuCoolingSystem = new CpuCoolingSystem(new Dimensions(16.7, 16.5), new List<string> { "LGA1151", "AM4", "LGA1200", "LGA2066", "AM3+", "FM2+" }, 165.0);
         var nzxtH510AtxMidTower = new Corpus(new Dimensions(37.5, 21.0), new List<string> { "ATX", "Micro-ATX", "Mini-ITX" }, new Dimensions(46.7, 42.4));
-        var repository = new Repository();
+        Repository repository = Repository.Instance;
         repository.Motherboards.Add(asusPrimeZ490A);
         repository.Cpus.Add(intelCoreI9);
         repository.Bioses.Add(bios);
@@ -61,6 +61,7 @@ public class PersonalComputerAssemblingTests
             .AddVideoCart(repository.VideoCarts.FirstOrDefault()).AddRandomAccessMemory(repository.RandomAccessMemories.FirstOrDefault(kingstonHyperXFuryDdr43200)).WithCpuCoolingSystem(repository.CpuCoolingSystems.FirstOrDefault(cpuCoolingSystem));
 
         PersonalComputerBuildResult result = personalComputerBuilder.Build();
+        repository.ClearRepository();
 
         Assert.IsType<PersonalComputerBuildResult.Success>(result);
     }
@@ -98,7 +99,7 @@ public class PersonalComputerAssemblingTests
         var corsairRM850x850 = new PowerUnit(850);
         var cpuCoolingSystem = new CpuCoolingSystem(new Dimensions(16.7, 16.5), new List<string> { "LGA1151", "AM4", "LGA1200", "LGA2066", "AM3+", "FM2+" }, 165.0);
         var nzxtH510AtxMidTower = new Corpus(new Dimensions(37.5, 21.0), new List<string> { "ATX", "Micro-ATX", "Mini-ITX" }, new Dimensions(46.7, 42.4));
-        var repository = new Repository();
+        Repository repository = Repository.Instance;
         repository.Motherboards.Add(asusPrimeZ490A);
         repository.Cpus.Add(intelCoreI9);
         repository.Bioses.Add(bios);
@@ -115,6 +116,7 @@ public class PersonalComputerAssemblingTests
             .AddVideoCart(repository.VideoCarts.FirstOrDefault()).AddRandomAccessMemory(repository.RandomAccessMemories.FirstOrDefault(kingstonHyperXFuryDdr43200)).WithCpuCoolingSystem(repository.CpuCoolingSystems.FirstOrDefault(cpuCoolingSystem));
 
         PersonalComputerBuildResult result = personalComputerBuilder.Build();
+        repository.ClearRepository();
 
         Assert.IsType<PersonalComputerBuildResult.SuccessWithWarrantyDisclaimer>(result);
     }
@@ -151,7 +153,7 @@ public class PersonalComputerAssemblingTests
         var corsairRM850x850 = new PowerUnit(850);
         var cpuCoolingSystem = new CpuCoolingSystem(new Dimensions(16.7, 16.5), new List<string> { "LGA1151", "AM4", "LGA1200", "LGA2066", "AM3+", "FM2+" }, 165.0);
         var nzxtH510AtxMidTower = new Corpus(new Dimensions(37.5, 21.0), new List<string> { "ATX", "Micro-ATX", "Mini-ITX" }, new Dimensions(46.7, 42.4));
-        var repository = new Repository();
+        Repository repository = Repository.Instance;
         repository.Motherboards.Add(asusPrimeZ490A);
         repository.Cpus.Add(intelCoreI9);
         repository.Bioses.Add(bios);
@@ -168,6 +170,7 @@ public class PersonalComputerAssemblingTests
             .AddVideoCart(repository.VideoCarts.FirstOrDefault()).AddRandomAccessMemory(repository.RandomAccessMemories.FirstOrDefault(kingstonHyperXFuryDdr43200)).WithCpuCoolingSystem(repository.CpuCoolingSystems.FirstOrDefault(cpuCoolingSystem));
 
         PersonalComputerBuildResult result = personalComputerBuilder.Build();
+        repository.ClearRepository();
 
         Assert.IsType<PersonalComputerBuildResult.SuccessWithWarrantyDisclaimer>(result);
     }
@@ -203,7 +206,7 @@ public class PersonalComputerAssemblingTests
         var corsairRM850x850 = new PowerUnit(850);
         var cpuCoolingSystem = new CpuCoolingSystem(new Dimensions(16.7, 16.5), new List<string> { "LGA1151", "AM4", "LGA1200", "LGA2066", "AM3+", "FM2+" }, 165.0);
         var nzxtH510AtxMidTower = new Corpus(new Dimensions(37.5, 21.0), new List<string> { "ATX", "Micro-ATX", "Mini-ITX" }, new Dimensions(46.7, 42.4));
-        var repository = new Repository();
+        Repository repository = Repository.Instance;
         repository.Motherboards.Add(asusPrimeZ490A);
         repository.Cpus.Add(intelCorei510400);
         repository.Bioses.Add(bios);
@@ -222,6 +225,7 @@ public class PersonalComputerAssemblingTests
         PersonalComputerBuildResult result = personalComputerBuilder.Build();
         string factMessage = result.Comment;
         string expectedMessage = "Motherboards' socket differs from СPU socket.";
+        repository.ClearRepository();
 
         Assert.Equal(expectedMessage, factMessage);
     }
