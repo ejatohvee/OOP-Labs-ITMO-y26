@@ -15,9 +15,4 @@ public record ImportanceLevels
     }
 
     public int Level { get; set; }
-
-    // public static ImportanceLevels ImportanceLevelsСomparison(ImportanceLevels importanceLevelOne, ImportanceLevels importanceLevelTwo)
-    // {
-    //     return importanceLevelOne.Level > importanceLevelTwo.Level ? importanceLevelOne : importanceLevelTwo;
-    // }
 }
