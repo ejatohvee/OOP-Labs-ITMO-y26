@@ -19,6 +19,6 @@ public class DisplayAddresseeAdapter : IAddressee
     public void ReceiveMessage(Message message)
     {
         _display.PrintText(
-            message.Header + "\n" + message.Body, Color);
+            $"{message.Header}\n{message.Body}", Color);
     }
 }

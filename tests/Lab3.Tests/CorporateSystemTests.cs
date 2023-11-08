@@ -198,7 +198,7 @@ public class CorporateSystemTests
         string actual = mockMessenger.OutputString;
 
         // Assert
-        string expected = header + "\n" + body;
+        string expected = $"{header}\n{body}";
         Assert.Equal(expected, actual);
     }
 }

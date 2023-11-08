@@ -14,6 +14,6 @@ public class MessengerAddresseeAdapter : IAddressee
 
     public void ReceiveMessage(Message message)
     {
-        _messenger.PrintMessage(message.Header + "\n" + message.Body);
+        _messenger.PrintMessage($"{message.Header}\n{message.Body}");
     }
 }
