@@ -19,4 +19,10 @@
         </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\Lab5\Application\Lab5.Application.Models\Lab5.Application.Models.csproj" />
+      <ProjectReference Include="..\..\src\Lab5\Infrastructure.DataAccess\Infrastructure.DataAccess.csproj" />
+      <ProjectReference Include="..\..\src\Lab5\Lab5.Application\Lab5.Application.csproj" />
+    </ItemGroup>
+
 </Project>
