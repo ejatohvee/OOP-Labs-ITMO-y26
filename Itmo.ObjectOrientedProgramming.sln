@@ -24,6 +24,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lab5", "Lab5", "{55C309C9-B7DE-4F64-AFDE-A33F9C2AB2D4}"
 	ProjectSection(SolutionItems) = preProject
 		src\Lab5\docker.yaml = src\Lab5\docker.yaml
+		Program.cs = Program.cs
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab2.Tests", "tests\Lab2.Tests\Lab2.Tests.csproj", "{25D0E1F0-760B-4E76-B0D9-3EF274B35AF6}"
